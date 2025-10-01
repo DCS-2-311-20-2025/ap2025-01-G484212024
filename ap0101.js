@@ -14,21 +14,50 @@ function init() {
   const axes = new THREE.AxesHelper(18);
   scene.add(axes);
 
-  /* 平面の設定
+  //平面の設定
+  const box1Geometry = new THREE.BoxGeometry(8, 8, 8);
+  const box1Material = new THREE.MeshLambertMaterial({ color: 0x008060});
+  const box1 = new THREE.Mesh(box1Geometry, box1Material);
+  box1.position.y=4;
+  //plane.rotation.x = -0.5 * Math.PI;
+  scene.add(box1);
+  /**/
+
+  const box2Geometry = new THREE.BoxGeometry(8, 4, 2);
+  const box2Material = new THREE.MeshLambertMaterial({ color: 0xFF8000});
+  const box2 = new THREE.Mesh(box2Geometry, box2Material);
+  box2.position.y=3;
+  box2.position.x=10;
+  //plane.rotation.x = -0.5 * Math.PI;
+  scene.add(box2);
+
+  const box3Geometry = new THREE.BoxGeometry(4, 4, 2);
+  const box3Material = new THREE.MeshLambertMaterial({ color: 0xFF8});
+  const box3 = new THREE.Mesh(box3Geometry, box3Material);
+  box3.position.y=7;
+  box3.position.x=10;
+  //plane.rotation.x = -0.5 * Math.PI;
+  scene.add(box3);
+
   const planeGeometry = new THREE.PlaneGeometry(32, 16);
   const planeMaterial = new THREE.MeshBasicMaterial({ color: 0x606060});
   const plane = new THREE.Mesh(planeGeometry, planeMaterial);
   plane.rotation.x = -0.5 * Math.PI;
   scene.add(plane);
-  /**/
 
+  //光源
+  const spotLight=new THREE.SpotLight(0xffffff,1000);
+  spotLight.position.set(24,16,8);
+  scene.add(spotLight);
+
+  
   // カメラの設定
   const camera = new THREE.PerspectiveCamera(
-    60, window.innerWidth/window.innerHeight, 0.1, 1000);
-  camera.position.x = 25;
-  camera.position.y = 15;
-  camera.position.z = 30;
-  camera.lookAt(0, 4, 0);
+    60, window.innerWidth/window.innerHeight, 0.1, 750);
+  camera.position.x = 30;
+  camera.position.y = 20;
+  camera.position.z = 20;
+  camera.lookAt(0, 5, 0);
 
   // レンダラの設定
   const renderer = new THREE.WebGLRenderer();
